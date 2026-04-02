@@ -32,7 +32,17 @@ router.post(
 );
 
 //Actualizar evento
-router.put("/:id", actualizarEvento);
+router.put(
+  "/:id",
+  [
+    check("title", "El título es obligatorio").not().isEmpty(),
+    check("start", "Fecha de inicio es obligatorio").custom(isDate),
+    check("end", "Fecha de inicio es obligatorio").custom(isDate),
+    // check('title', 'El título es obligatorio').not().isEmpty(),
+    validarCampos,
+  ],
+  actualizarEvento,
+);
 
 //Borrar evento
 router.delete("/:id", eliminarEvento);
