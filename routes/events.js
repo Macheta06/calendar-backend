@@ -9,6 +9,7 @@ const {
 } = require("../controllers/events");
 
 //Todas pasan por la validación del token
+router.use(validarJWT);
 
 //Obtener eventos
 router.get("/", getEventos);
